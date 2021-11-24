@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Dashboard Screen</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+  <!-- For DataTables -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
+</head>
+<body>
+<div class="container">
+    <h1>Create an issue here in Bugzilla</h1>
+    <form id="myform">
+        <div class="form-group row">
+            <label for="title" class="col-md-2 col-form-label">Issue Title:</label>
+            <div class="col-md-6">
+                <input type="text" class="form-control" name="title" id="title" placeholder="Mention Issue Title">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="description" class="col-md-2 col-form-label">Description:</label>
+            <div class="col-md-6">
+                <input type="text" class="form-control" name="description" id="description" placeholder="Enter description">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="assignee" class="col-md-2 col-form-label">Assignee:</label>
+            <div class="col-md-6">
+                <input type="text" class="form-control" name="assignee" id="assignee" placeholder="Assignee for the issue">
+            </div>
+        </div>      
+        <div class="form-group row">
+            <div class="offset-sm-2 col-sm-10">
+                <button type="submit" class="btn btn-primary" id="submitissue">Submit</button>
+            </div>
+        </div>
+    </form>
+    <div class="container">
+        
+        <table class="table table-hover table-striped" id="datatable">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Reported date</th>
+                    <th>Reported time</th>
+                    <th>Assignee</th>
+                    <th>Days left</th>
+                </tr>
+            </thead>
+            <tbody id="tablebody">
+                <%if(details != undefined){%>
+                <% for(var i=0;i<details.length;i++){ %>
+                    <%if(details[i].difference > 3){%>
+                <tr style="background-color: chartreuse;">
+                    <%}else{%>
+                <tr>
+                    <%}%>
+                    <td scope="row"><%= details[i].title %></td>
+                    <td><%= details[i].description %></td>
+                    <td><%= details[i].reporteddate %></td>
+                    <td><%= details[i].reportedtime %></td>
+                    <td><%= details[i].assignee %></td>
+                    <td><%= 3-details[i].difference %></td>
+                    <!-- <td><%= %></td> -->
+                </tr>
+                <%}%> 
+                <%}%>
+            </tbody>
+        </table>
+
+    </div>
+</div>
+<script type="text/javascript" src="../js/issueajax.js"></script>
+</body>
+</html>

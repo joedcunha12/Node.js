@@ -1,0 +1,26 @@
+version: "3"
+services: 
+  video: 
+    container_name: videoapp
+    image: videoservice
+    restart: always
+    build: .
+    ports: 
+      - "9002:9000"
+      links: 
+        -videodatabase
+   
+    
+   user: 
+    container_name: userapp
+    image: userservice
+    ports: 
+      - "9003:9000"
+      links: 
+        -video
+
+    videodatabase:
+      image: mongo
+      container_name: dbvideo
+      ports:
+        -"27018:27107"    

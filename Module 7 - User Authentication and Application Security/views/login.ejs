@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Login page</h1>
+    <input type="email" name="email" id="email" />
+    <input type="password" name="password" id="password" />
+
+    <button id="login">Login</button>
+
+    <script>
+      //   var axios = require("axios");
+      document.getElementById("login").onclick = async function () {
+        var email = document.getElementById("email").value;
+        var password = document.getElementById("password").value;
+        // var result = await axios({
+        //   method: "POST",
+        //   url: "/api/user/login",
+        //   data: { email: email, password: password },
+        // });
+        let rawdata = await fetch("/api/user/login", {
+          method: "POST",
+        //   mode: "",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email: email, password: password }),
+        });
+        console.log(",,,,...rawdata", rawdata, rawdata.headers);
+        let response = await rawdata.json();
+        console.log("response", result);
+      };
+    </script>
+  </body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <label id="mainlable"></label>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      // var socket = io("http://localhost:5000");
+      // socket.on("someevent", (result) => {
+      //   document.getElementById("mainlable").innerHTML = result;
+
+      // });
+    </script>
+
+    <!-- <input placeholder="Enter your chat name" id="username" />
+    <button id="joinchat">joinchat</button> -->
+
+    <div id="chatjoining" style="visibility: visible">
+      <input placeholder="Enter your name" id="username" />
+      <button id="joinchat">Join chat</button>
+    </div>
+
+    <div id="chatbox" style="visibility: hidden; width: 400px; height: 400px">
+      <input placeholder="Enter your text" id="textmessage" />
+      <button id="sendchat">send chat</button>
+    </div>
+    <script>
+      var socket = io("");
+      var username;
+      document.getElementById("joinchat").onclick = function () {
+        username = document.getElementById("username").value;
+
+        socket.emit("userjoined", username);
+
+        document.getElementById("chatbox").style.visibility = "visible";
+        document.getElementById("chatjoining").style.visibility = "hidden";
+        socket.on("onlineusers", (user) => {
+          console.log("onlineusers", user);
+        });
+        socket.emit("chatmessage", username);
+      };
+
+      socket.on("anewchatmessage", function (allmessages) {
+        console.log("messages from all chats", allmessages);
+      });
+    </script>
+  </body>
+</html>

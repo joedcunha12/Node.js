@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <% include partials/head %>     
+    </head>
+    <body>
+        <% include partials/menu %>
+        <div class="container">
+            <div
+                id="userInfo"
+                class="alert alert-success">
+                
+            </div>
+            <% include partials/alert %>
+            <div id="dashBody">
+                <!-- Load add news form by default, this area gets replaced when menu items are selected -->
+                <% include newsForm %>
+            </div>
+        </div>
+        <script type="text/javascript" src="/js/admin.js"></script>
+    </body>
+</html>
+

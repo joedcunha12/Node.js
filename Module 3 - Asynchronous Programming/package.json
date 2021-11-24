@@ -1,0 +1,25 @@
+{
+  "name": "demofile",
+  "version": "1.0.0",
+  "description": "this is our first npm package",
+  "main": "demo.js",
+  "scripts": {
+    "start": "node demo.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "joe",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "express": "^4.17.1",
+    "mongoose": "^5.13.7",
+    "nodemailer": "^6.6.3",
+    "s3": "^4.4.0",
+    "yargs": "^17.1.0",
+    "ytdl-core": "^4.9.0"
+  },
+  "devDependencies": {},
+  "keywords": [
+    "postgress"
+  ]
+}
